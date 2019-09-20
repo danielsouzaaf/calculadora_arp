@@ -34,10 +34,10 @@ fib_1_svc(operands *argp, struct svc_req *rqstp)
 	{
          s = fib1 + fib2;
          fib1 = fib2;
-         result = s;
+         fib2 = s;
 	}
-
-    return &result;
+	result = fib2
+    	return &result;
 }
 
 int *
