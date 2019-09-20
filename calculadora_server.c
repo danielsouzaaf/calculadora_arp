@@ -27,16 +27,14 @@ int *
 fib_1_svc(operands *argp, struct svc_req *rqstp)
 {
 	static int  result;
-	int n, i, fib1, fib2, soma;
+	int n, i, fib1 = 1, fib2 = 1, s;
 
 	n = argp->x;
-
-	int i, fib1 = 1, fib2 = 1, soma;
 	for (i = 3; i <= n; i = i + 1)
 	{
-         soma = fib1 + fib2;
+         s = fib1 + fib2;
          fib1 = fib2;
-         result = soma;
+         result = s;
 	}
 
     return &result;
@@ -82,10 +80,10 @@ int *
 comprimentocirculo_1_svc(operands *argp, struct svc_req *rqstp)
 {
 	static int  result;
-    const PI = 3.14;
+    const int PI = 3.14;
     int r = argp->x;
 
-    result = 2 * PI * argp * r;
+    result = 2 * PI * r;
 
 	return &result;
 }
@@ -94,7 +92,7 @@ int *
 areacirculo_1_svc(operands *argp, struct svc_req *rqstp)
 {
 	static int  result;
-    const PI = 3.14;
+    const int PI = 3.14;
 	int r = argp->x;
 
 	result = PI * (r * r);

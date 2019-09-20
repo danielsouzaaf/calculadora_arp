@@ -8,7 +8,7 @@
 
 
 void
-simp_prog_1(char *host)
+simp_prog_1(char *host, operands ab)
 {
 	CLIENT *clnt;
 	int  *result_1;
@@ -34,37 +34,37 @@ simp_prog_1(char *host)
 	}
 #endif	/* DEBUG */
 
-	result_1 = fatorial_1(&fatorial_1_arg, clnt);
+	result_1 = fatorial_1(&ab, clnt);
 	printf("Fatorial do número %d = %d\n", ab.x, *result_1);
 	if (result_1 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_2 = fib_1(&fib_1_arg, clnt);
+	result_2 = fib_1(&ab, clnt);
     printf("Fibonacci de %d termos = %d\n", ab.x, *result_2);
 	if (result_2 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_3 = max_1(&max_1_arg, clnt);
+	result_3 = max_1(&ab, clnt);
     printf("O maior é = %d\n", *result_3);
     if (result_3 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_4 = soma_1(&soma_1_arg, clnt);
+	result_4 = soma_1(&ab, clnt);
     printf("A soma é = %d\n", *result_4);
     if (result_4 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_5 = subtracao_1(&subtracao_1_arg, clnt);
+	result_5 = subtracao_1(&ab, clnt);
     printf("A circunferencia é = %d\n", *result_5);
     if (result_5 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_6 = comprimentocirculo_1(&comprimentocirculo_1_arg, clnt);
+	result_6 = comprimentocirculo_1(&ab, clnt);
     printf("O comprimento do circunferencia de raio R é = %d\n", *result_6);
     if (result_6 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
 	}
-	result_7 = areacirculo_1(&areacirculo_1_arg, clnt);
+	result_7 = areacirculo_1(&ab, clnt);
     printf("A área do da circunferencia de raio R é = %d\n", *result_7);
     if (result_7 == (int *) NULL) {
 		clnt_perror (clnt, "call failed");
@@ -80,11 +80,18 @@ main (int argc, char *argv[])
 {
 	char *host;
 
+    int a = atoi(argv[2]);
+    int b = atoi(argv[3]);
+
+    operands ab;
+    ab.x = a;
+    ab.y = b;
+
 	if (argc < 2) {
 		printf ("usage: %s server_host\n", argv[0]);
 		exit (1);
 	}
 	host = argv[1];
-	simp_prog_1 (host);
+	simp_prog_1 (host, ab);
 exit (0);
 }
